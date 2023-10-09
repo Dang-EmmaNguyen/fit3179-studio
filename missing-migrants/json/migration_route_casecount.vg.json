@@ -1,0 +1,51 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 641,
+    "height": 370,
+    "config": {
+        "background": "transparent",
+        "title": {"fontSize": 16}
+    },
+    "title": "Migration Routes",
+    
+    "data": {
+        "url": "https://raw.githubusercontent.com/Dang-EmmaNguyen/fit3179-studio/main/missing_migrants.csv"
+    },
+
+    "transform": [
+        {
+            "aggregate": [{"op": "count", "field": "Incident year", "as": "incident_count"}],
+            "groupby": ["Migration route"]
+        },
+        {"filter": {"field": "Migration route", "valid": false}},
+        {"filter": "datum.incident_count > 1"}
+    ],
+
+    "encoding": {
+        "y": {"field": "Migration route", "type": "nominal", "axis": null}
+    },
+
+    "layer": [
+        {
+            "mark": {"type": "bar", "color": "#b98077"},
+            "encoding": {
+                "x": {
+                    "field": "incident_count",
+                    "type": "quantitative",
+                    "title": "Number of Incidents",
+                    "scale": {"type": "symlog"}
+                },
+                "tooltip": [
+                    {"field": "Migration route", "type": "nominal", "title": "Route"},
+                    {"field": "incident_count", "type": "quantitative", "title": "Number of incidents"}
+                ]
+            }
+        },
+        {
+            "mark": {"type": "text", "align": "left", "x": 5},
+            "encoding": {
+                "text": {"field": "Migration route"}
+            }
+        }
+    ]
+}

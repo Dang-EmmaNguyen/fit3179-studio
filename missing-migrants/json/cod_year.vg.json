@@ -1,0 +1,39 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 700,
+    "height": 400,
+    "config": {
+        "background": "transparent",
+        "title": {"fontSize": 16}
+    },
+    "title": "Most popular Cause of Death by Year",
+    
+    "data": {
+        "url": "https://raw.githubusercontent.com/Dang-EmmaNguyen/fit3179-studio/main/missing_migrants.csv"
+    },
+
+    "transform": [
+        {
+            "aggregate": [{"op": "count", "field": "Incident year", "as": "cod_count"}],
+            "groupby": ["Incident year", "Cause of Death"]
+        }
+    ],
+
+    "mark": {
+        "type": "bar"
+    },
+
+    "encoding": {
+        "x": { "field": "Incident year", "type": "ordinal", "title": "Year"},
+        "y": {"field": "cod_count", "type": "quantitative", "title": "Number of Incidents"},
+        "color": {
+            "field": "Cause of Death",
+            "type": "nominal"
+        },
+        "tooltip": [
+            {"field": "Incident year", "type": "ordinal", "title": "Year"},
+            {"field": "Cause of Death", "type": "nominal"},
+            {"field": "cod_count", "type": "quantitative", "title": "Number of Incidents"}
+        ]
+    }
+}

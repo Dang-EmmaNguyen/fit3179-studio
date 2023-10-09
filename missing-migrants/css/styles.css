@@ -1,0 +1,68 @@
+body *{
+    font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 70px;
+    font-family: 'Playfair Display', serif;
+    color: #007193;
+}
+
+p {
+    font-size: 18px;
+}
+
+.section-header {
+    font-size: 40px;
+    font-family: 'Playfair Display', serif;
+    color: #007193;
+    margin: 0px;
+}
+
+.section-container {
+    background-color: #ebe8e2;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+} 
+
+.subtitle {
+    font-size: 16px;
+    font-style: italic;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+.page {
+    width: 1000px;
+    background-color: #e2d7d7;
+    margin: auto;
+    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.vis-container {
+    width: 100%;
+    background-color: transparent;
+}
+
+.pure-g {
+    margin-bottom: 25px;
+}
+
+.description h2,
+h1 {
+    margin-top: 0px;
+}
+
+.description-right {
+    padding-left: 20px;
+}
+
+.description-left {
+    padding-right: 20px;
+}
