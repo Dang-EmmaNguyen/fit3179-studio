@@ -15,7 +15,7 @@ p {
 
 .section-header {
     font-size: 40px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Merriweather', serif;
     color: #007193;
     margin: 0px;
 }
@@ -25,20 +25,26 @@ p {
     border-radius: 20px;
     padding: 20px;
     margin-bottom: 20px;
+    border-color: rgb(112, 111, 111);
+    border-style: dashed;
 } 
 
 .subtitle {
     font-size: 16px;
     font-style: italic;
+    margin-bottom: 0px;
 }
+
 
 body {
     background-color: #ffffff;
+    background-image: url("../images/background.jpg");
+    background-size: contain;
 }
 
 .page {
     width: 1000px;
-    background-color: #e2d7d7;
+    background-color: #ece4d2;
     margin: auto;
     padding: 30px;
     padding-top: 30px;
@@ -60,9 +66,10 @@ h1 {
 }
 
 .description-right {
-    padding-left: 20px;
+    padding-left: 35px;
 }
 
 .description-left {
-    padding-right: 20px;
+    padding-top: 20px;
+    padding-right: 15px;
 }
