@@ -2,12 +2,12 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 500,
     "height": 350,
-    "padding": {"left": -10, "top": 20},
+    "padding": {"left": -120, "top": 20},
     "config": {
         "background": "transparent",
         "title": {"fontSize": 16}
     },
-    "title": "Affected Migrants by Age & Gender 2014-2023",
+    "title": "Survival Rate 2014-2023",
     
     "data": {
         "url": "https://raw.githubusercontent.com/Dang-EmmaNguyen/fit3179-studio/main/missing_migrants.csv"
@@ -30,24 +30,18 @@
     "transform": [
         {
             "aggregate": [
-                {"op": "sum", "field": "Number of Females", "as": "Female"},
-                {"op": "sum", "field": "Number of Males", "as": "Male"},
-                {"op": "sum", "field": "Number of Children", "as": "Children"}
+                {"op": "sum", "field": "Total Number of Dead and Missing", "as": "victims"},
+                {"op": "sum", "field": "Number of Survivors", "as": "survivors"}
             ],
             "groupby": ["Incident year"]
         },
-        {
-            "fold": ["Female", "Male", "Children"],
-            "as": ["Category", "Victim_count"]
-        },
         {"filter": "datum['Incident year'] >= Year_from"},
         {
-            "calculate": "'Sudden increase in ;' + datum['Category'] + ' victims'",
-            "as": "text_annotation_raw"
+            "calculate": "'The lowest survival rate is of Year ' + datum['Incident year']",
+            "as": "text_annotation"
         },
         {
-            "calculate": "split(datum.text_annotation_raw,';')",
-            "as": "text_annotation"
+            "calculate": "(datum.survivors / (datum.survivors+datum.victims))*100", "as": "Survival rate"
         }
     ],
     
@@ -59,10 +53,10 @@
             "scale": {"type": "ordinal"}
         },
         "y": {
-            "field": "Victim_count",
+            "field": "Survival rate",
             "type": "quantitative",
-            "title": "Number of Victims",
-            "scale": {"zero": true}
+            "title": "Survival rate (%)",
+            "scale": {"zero": false}
         }
     },
 
@@ -70,18 +64,13 @@
         {
             "mark": {
                 "type": "line",
-                "point": true
+                "point": true,
+                "color": "cornflowerblue"
             },
             "encoding": {
-                "color": {
-                    "field": "Category",
-                    "type": "nominal",
-                    "title": "Category"
-                },
                 "tooltip": [
                     {"field": "Incident year", "type": "quantitative", "title": "Year"},
-                    {"field": "Category", "type": "nominal", "title": "Category"},
-                    {"field": "Victim_count", "type": "quantitative", "title": "Number of victims"}
+                    {"field": "Survival rate", "type": "quantitative", "title": "Survival rate", "format": ".2f"}
                 ]
             }
         },
@@ -99,7 +88,7 @@
                 "color": {"value": "black"},
                 "opacity": {
                     "condition": {
-                        "test": "(datum['Incident year'] == 2018 && datum['Category'] == 'Female') || (datum['Incident year'] == 2022 && datum['Category'] == 'Male')",
+                        "test": "(datum['Incident year'] == 2019)",
                         "value": 1
                     },
                     "value": 0

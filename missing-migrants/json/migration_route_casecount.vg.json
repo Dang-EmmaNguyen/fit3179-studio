@@ -2,11 +2,12 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 641,
     "height": 370,
+    "padding": {"top": 20},
     "config": {
         "background": "transparent",
         "title": {"fontSize": 16}
     },
-    "title": "Migration Routes",
+    "title": "Total number of Incidents by Migration Route (2014-2023)",
     
     "data": {
         "url": "https://raw.githubusercontent.com/Dang-EmmaNguyen/fit3179-studio/main/missing_migrants.csv"
@@ -27,7 +28,7 @@
 
     "layer": [
         {
-            "mark": {"type": "bar", "color": "#b98077"},
+            "mark": {"type": "bar", "color": "#92635c"},
             "encoding": {
                 "x": {
                     "field": "incident_count",
